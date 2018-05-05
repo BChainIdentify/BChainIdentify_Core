@@ -55,7 +55,7 @@ export class Api {
             const success = this.blockChainAlgs.addBlock(this.blockChain,newUserBlock);
 
             if(success){
-                res.sendStatus(200)
+                res.send(this.blockChain)
             }
             else{
                 res.sendStatus(403)
