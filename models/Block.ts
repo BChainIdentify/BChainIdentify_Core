@@ -3,10 +3,10 @@ import { User } from "./User";
 export interface Block {
 
     block: Number,
-    chain: String,
+    chain: string,
     nonce?: Number,
     user: User 
-    previous?: String,
+    previous?: string,
     hash?: ''
 
 }

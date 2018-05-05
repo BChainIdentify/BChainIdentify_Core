@@ -27,9 +27,9 @@ export class Api {
 
             const usernameHash = req.body['usernameHash']
             const publicKey = req.body['publicKey']
-            const signHash = req.body['signHash']
+            const signHash = req.body['signedHash']
             let newUserBlock:Block
-            if(this.blockChain.length === 0) {
+            if(typeof this.blockChain  === "undefined") {
                 this.blockChain = []
                 newUserBlock = {
                     chain : this.chainName,
@@ -70,7 +70,20 @@ export class Api {
             signedMessage
             */
 
-            
+            const hash = req.query['userhash']
+            const message = req.query['message']
+            const signedMessage = req.query['signedMessage']
+
+            const block = this.blockChainAlgs.searchUser(this.blockChain,hash)
+
+            const isVerified = this.blockChainAlgs.verififyMessage(message,signedMessage,block.user.publicKey)            
+
+            if(isVerified)[
+                res.sendStatus(200)
+            ]
+            else{
+                res.sendStatus(401)
+            }
 
         })
 

@@ -1,4 +1,5 @@
 import { Block } from "../models/Block";
+import * as NodeRSA from 'node-rsa'
 
 var sha256 = require('sha256')
 
@@ -40,6 +41,31 @@ export class Blockchain{
 
     public verifySignature(block:Block){
         
+        const isVerified = this.verififyMessage(block.user.userhash,block.user.signedHashedUserName,block.user.publicKey)
+
+        return isVerified
+
+    }
+
+    public searchUser(blockChain:Block[],userHash:string):Block{
+        blockChain.forEach(
+            (block) => {
+                if(block.user.userhash === userHash){
+                    return block
+                }
+            }
+        )
+        return null
+    }
+
+    public verififyMessage(message:string,signedMessage:string,publicKey:string){
+        const key = new NodeRSA();
+        console.log(publicKey)
+        key.importKey(publicKey,'pkcs8-public-pem')
+        const signedMessagedDec = Buffer.from(signedMessage, 'base64'); 
+        const isVerified = key.verify((message as any),(signedMessagedDec as any));
+        
+        return isVerified
     }
 
 }
