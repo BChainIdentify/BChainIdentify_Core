@@ -2,9 +2,9 @@ import { User } from "./User";
 
 export interface Block {
 
-    block: Number,
+    block: number,
     chain: string,
-    nonce?: Number,
+    nonce?: number,
     user: User 
     previous?: string,
     hash?: ''

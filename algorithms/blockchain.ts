@@ -1,18 +1,18 @@
 import { Block } from "../models/Block";
 import * as NodeRSA from 'node-rsa'
 
-var sha256 = require('sha256')
 
 export class Blockchain{
     
     maximumNonce = 500000
-    pattern = '00'
-    difficulty = 2;
+    pattern = '0'
+    difficulty = 1;
 
     public mine(block:Block){
         for (var x = 0; x <= this.maximumNonce; x++) {
             block.nonce = x;
-            const hash = sha256([block.block,block.user,block.previous,block.nonce]);
+            const hash = require('sha256')([block.block,block.user,block.previous,block.nonce]);
+            //console.log(hash)
             if( hash.substr(0,this.difficulty) === this.pattern ){
               block.hash = hash;
               return block

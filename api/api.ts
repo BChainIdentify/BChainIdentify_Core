@@ -43,7 +43,7 @@ export class Api {
             }else{
                 newUserBlock = {
                     chain:this.blockChain[this.blockChain.length - 1].chain,
-                    block:this.blockChain[this.blockChain.length - 1].block,
+                    block:this.blockChain[this.blockChain.length - 1].block+1,
                     user:{
                         userhash :usernameHash,
                         publicKey:publicKey,
