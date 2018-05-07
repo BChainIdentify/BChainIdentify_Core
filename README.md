@@ -1,4 +1,5 @@
 # BChainIdentify_Core
+This package provides the core blockchain functionality of the BChainIdentify applications and modules.
 
 ## Developers
 * [Miguel Caceres](https://github.com/foxneo)
